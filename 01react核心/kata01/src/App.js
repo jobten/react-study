@@ -1,26 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// 函数组件通常无状态，仅关注内容展示，返回渲染结果即可
+import React from 'react'
+import JsxTest from "./components/JsxTest"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default () => {
+    
+    return(
+        <div>
+            <JsxTest />
+        </div>
+    )
 }
-
-export default App;
