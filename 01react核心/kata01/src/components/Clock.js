@@ -1,5 +1,21 @@
 import React, { Component, useState, useEffect } from 'react'
 
+// 函数组件状态管理：useState, useEffect
+export function ClockFunc() {
+    // 创建状态, useState返回状态和修改状态的函数所组成的数组
+    const [date, setDate] = useState(new Date())
+
+    // 定时器是副作用, 需要用到useEffect
+    useEffect(() => {
+        const timerID = setInterval(() => {
+            setDate(new Date())
+        }, 1000)
+        return () => clearInterval(timerID)
+    }, []) // 参数2指的是依赖状态，没有依赖且仅执行一次，返空数组
+
+    return <div>{ date.toLocaleTimeString() }</div>
+}
+
 export default class Clock extends Component {
     constructor(props) {
         super(props)
