@@ -5,7 +5,7 @@ export default () => {
     
     return(
         <div>
-            <Clock />
+            <Clock change={ date => console.log(date.toLocaleTimeString()) } />
         </div>
     )
 }
