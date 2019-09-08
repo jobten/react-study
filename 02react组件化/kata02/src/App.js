@@ -2,8 +2,9 @@
 import React from 'react'
 // import JsxTest from "./components/JsxTest"
 // import StateManager from './components/StateManager'
-// import EventHandle from "./components/EventHandle";
-import ContextTest from "./components/ContextTest";
+// import EventHandle from "./components/EventHandle"
+// import ContextTest from "./components/ContextTest"
+import HocTest from "./components/Hoc"
 
 export default () => {
     
@@ -12,7 +13,8 @@ export default () => {
             {/* <JsxTest /> */}
             {/* <StateManager /> */}
             {/* { <EventHandle /> }, */}
-            { <ContextTest />}
+            {/* { <ContextTest />} */}
+            {<HocTest />}
         </div>
     )
 }
