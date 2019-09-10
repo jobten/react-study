@@ -23,15 +23,38 @@ function Dialog(props) {
         "foo": {title: 'foo', content: 'foo~'},
         "bar": {title: 'bar', content: 'bar~'},
     }
+    // props.children代表标签内部内容
     // 执行函数获得要显示的内容
-    const obj = props.children(messages[props.msg])
-    const { body, footer } = obj
+    const { body, footer } = props.children(messages[props.msg])
+
     return (<div sytle={{ border: "1px solid blue" }}>
                 {/* 此处显示的内容是动态生成的 */}
                 { body }
                 <div>{ footer }</div>
             </div>
             )
+}
+
+function Radio({ children, ...abc }) {
+    return (
+        <label>
+            <input type="radio" { ...abc }/>
+            { children }
+        </label>
+    )
+}
+
+function RadioGroup(props) {
+    return (
+        <div>
+            { React.Children.map(props.children, radio => {
+                // 要修改虚拟dom 只能克隆它
+                // 参数1是克隆对象
+                // 参数2是设置的属性
+                return React.cloneElement(radio, { name: props.name })
+            })}
+        </div>
+    )
 }
 
 export default function Compositions() {
@@ -72,6 +95,12 @@ export default function Compositions() {
                      footer: <button onClick={() => alert("react确实好")}>确定</button>
                  })}
          </Dialog>
+
+         <RadioGroup name="mvvm">
+            <Radio value="vue">vue</Radio>
+            <Radio value="react">react</Radio>
+            <Radio value="ng">angular</Radio>
+        </RadioGroup>
      </div>
     )
 }

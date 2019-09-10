@@ -5,7 +5,8 @@ import React from 'react'
 // import EventHandle from "./components/EventHandle"
 // import ContextTest from "./components/ContextTest"
 // import HocTest from "./components/Hoc"
-import Composition from "./components/Composition"
+// import Composition from "./components/Composition"
+import HooksTest from "./components/HooksTest"
 
 export default () => {
     
@@ -16,7 +17,8 @@ export default () => {
             {/* { <EventHandle /> }, */}
             {/* { <ContextTest />} */}
             {/* {<HocTest />} */}
-            {<Composition />}
+            {/* {<Composition />} */}
+            {<HooksTest />}
         </div>
     )
 }
