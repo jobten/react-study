@@ -1,12 +1,21 @@
 import React from 'react'
-import { BrowserRouter, Link, Route } from 'react-router-dom'
+import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom'
 
 function ProductList() {
     return <div>ProductList</div>;
 }
 
 function ProductMgt() {
-    return <div>ProductMgt</div>;
+    return (
+        <div>
+            <h3>ProductMgt</h3>
+            <Link to="/management/add">新增商品</Link>
+            <span> | </span>
+            <Link to="/management/search">搜索商品</Link>
+            <Route path="/management/add" component={() => <div>add</div>}></Route>
+            <Route path="/management/search" component={() => <div>search</div>}></Route>
+        </div>
+    )
 }
 
 function Detail({ match, history, location }) {
@@ -17,6 +26,35 @@ function Detail({ match, history, location }) {
     )
 }
 
+function PrivateRoute({ component: Component, isLogin, ...rest }) {
+    return (
+        <Route {...rest} render={props => isLogin ? (
+            <Component {...props}/>
+        ): (
+            <Redirect 
+                to={{ 
+                        pathname: '/login',
+                        state: {redirect: props.location.pathname,
+                    }
+                }}
+                />
+                )
+            } 
+        />
+    )
+}
+function Login({ location, isLogin, login }) {
+    console.log('login - ', location, isLogin, login)
+    const redirect = location.state.redirect || "/" // 重定向地址
+    if (isLogin) return <Redirect to={redirect} />
+    return (
+    <div>
+    <p>用户登录</p>
+    <hr />
+    <button onClick={login}>登录</button>
+    </div>
+    )
+}
 export default function RouterTest() {
     
     return (
@@ -28,11 +66,15 @@ export default function RouterTest() {
                 <span> | </span>
                 <Link to="/detail/web">明细</Link>
             </nav>
-            <div>
+            <Switch>
                 <Route exact path="/" component={ ProductList } />
-                <Route path="/management" component={ ProductMgt } />
+                <PrivateRoute path="/management" component={ ProductMgt } isLogin= { false }/>
+                <Route path="/login" component= {Login} login={() => {
+                    console.log('登录成功')
+                }} isLogin = {false}/>
                 <Route path="/detail/:name" component= { Detail } />
-            </div>
+                <Route component={() => <h3>页面不存在</h3>}></Route>
+            </Switch>
         </BrowserRouter>
     )
 }
