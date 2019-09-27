@@ -14,7 +14,8 @@ import React from 'react'
 // import CommentList from "./components/CommentList"
 // import ReduxTest from "./components/ReduxTest"
 // import MyReduxTest from "./components/MyReduxTest"
-import RouterTest from "./components/RouterTest"
+// import RouterTest from "./components/RouterTest"
+import MyRouterTest from "./components/MyRouterTest"
 
 // import Button from 'antd/lib/button'
 // import "antd/dist/antd.css"
@@ -48,7 +49,8 @@ export default () => {
             {/* { <CommentList></CommentList>} */}
             {/* { <ReduxTest></ReduxTest>} */}
             {/* { <MyReduxTest></MyReduxTest>} */}
-            { <RouterTest></RouterTest>}
+            {/* { <RouterTest></RouterTest>} */}
+            { <MyRouterTest></MyRouterTest>}
         </div>
     )
 }
